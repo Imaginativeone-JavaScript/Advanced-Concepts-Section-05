@@ -1,7 +1,42 @@
 - [ ] Section 5: The 2 Pillars: Closures and Prototypal Inheritance 00/25|2hr 26min
 	- [ ] 66. Section Overview | 2min
 	- [ ] 67. Functions are Objects | 9min
+	  - 'this' keyword, 'arguments' keyword
+		- variable environment
+		- scope chain(s)
+		- invoking a function
+		  - directly
+			- object method
+			- call & apply
+			- function constructor
+
+			```javascript
+			const four = new Function('numParameter', 'return 4');
+
+			four(4);
+			```
+
+			```javascript
+			function woohoo() {
+				console.log('woohoo');
+			}
+
+			woohoo.yell = 'aaahhh'; // A function creates a CALLABLE OBJECT
+			```
+
+			Pseudo-code
+			```javascript
+			const specialObj = {
+				yell: 'aaahhh',
+				name: 'woohoo' // name of the function
+				(): console.log('woohoo');
+			}
+			```
+
 	- [ ] 68. First Class Citizens | 4min
+	  - Functions can be assigned to variables and properties
+		- Functions can be passed as arguments to a function
+		- C
 	- [ ] 69. Extra Bits: Functions | 3min
 	- [ ] 70. Higher Order Functions | 17min
 	- [ ] 71. Exercise: Higher Order Functions | 4min
