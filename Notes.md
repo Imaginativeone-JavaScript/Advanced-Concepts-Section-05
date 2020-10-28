@@ -36,9 +36,101 @@
 	- [ ] 68. First Class Citizens | 4min
 	  - Functions can be assigned to variables and properties
 		- Functions can be passed as arguments to a function
-		- C
+		- We can return functions as values
 	- [ ] 69. Extra Bits: Functions | 3min
+	  - Be careful of initializing functions inside of loops
+
+		```javascript
+		function a() {
+			return param; // next, look up the scope chain
+		}
+		```
+
+		```javascript
+		function a(defaultParameter = 6) {
+			return defaultparameter; // next, look up the scope chain
+		}
+
+		a(); // 6
+		```
+
 	- [ ] 70. Higher Order Functions | 17min
+	  - function()
+		- function(a, b)
+		- HOF >> a function that returns another function
+
+		```javascript
+		function letAdamLogin() {
+			let array = [];
+			for (let i=0; i<1000000; i++) {
+				array.push(i);
+			}
+			return 'Access Granted to Adam';
+		}
+
+		letAdamLogin();
+		```
+
+		```javascript
+		function letEvaLogin() {
+			let array = [];
+			for (let i=0; i<1000000; i++) {
+				array.push(i);
+			}
+			return 'Access Granted to Eva';
+		}
+
+		letEvaLogin();
+		```
+
+		- DRY
+		- Next, use a function with a parameter
+
+		Higher-Order Function
+		```javascript
+		const giveAccessTo = (name) => 'Access Granted To ' + name;
+
+		function authenticate(verify) {
+			let array = [];
+			for (let i=0; i<verify; i++) {
+				array.push(i);
+			}
+			return true;
+		}
+
+		function letPerson(person, fn) {
+
+			if (person.level === 'admin') {
+				fn(500000);
+			} else if (person.level === 'user') {
+				fn(100000);
+			}
+			return giveAccessTo(person.name);
+		}
+
+		letPerson({ level: 'admin', name: 'Sally'}, authenticate);
+		```
+
+		Another Example
+		```javascript
+		// const multiplyBy() {}
+		
+		// multiplyByTwo
+		// multiplyByTen
+
+		const multiplyBy = function(num1){ 	// This is the Higher-Order Function
+			return function(num2) {						// Clean this up with arrow functions
+				return num1 * num2;
+			}
+		}
+
+		const multiplyByTwo = multiplyBy(2);
+		multiplyByTwo(4); 	//  8
+		multiplyByTwo(10); 	// 20
+		
+		multiplyBy(4)(6) 		// 24
+		```
+
 	- [ ] 71. Exercise: Higher Order Functions | 4min
 	- [ ] 72. Closures | 15min
 	- [ ] 73. Exercise: Closures | 3min
